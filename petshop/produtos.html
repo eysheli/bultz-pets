@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bultz Pets | Qualidade e Luxo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* 🎨 PALETA DE LUXO E FONTES: VERDE ESCURO AZULADO E OURO */
+        :root {
+            --cor-primaria: #0A3642;
+            /* Verde Escuro Azulado (Fundo/Rodapé mais sóbrio) */
+            --cor-ouro: #FFC300;
+            /* Ouro Vívido (Cor de Destaque) */
+            --cor-destaque: #1A535C;
+            /* Verde Médio Azulado (Para botões e links de ação) */
+            --cor-titulo: #00171F;
+            /* Verde Escuro Quase Preto */
+            --cor-fundo: #FDF8F3;
+            /* Bege Creme Suave (Papel de parede) */
+            --cor-clara: #ffffff;
+            /* Branco */
+            /* FONTES */
+            --fonte-titulo: 'Montserrat', sans-serif;
+            --fonte-corpo: 'Open Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--fonte-corpo);
+            background-color: var(--cor-fundo);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--cor-titulo);
+            /* Garante que a transição de saída da página não seja abrupta */
+            transition: opacity 0.5s ease-out;
+        }
+
+        /* =================================== */
+        /* ESTILOS DO TOPO (HEADER) */
+        /* =================================== */
+        .header-top {
+            background-color: #f0f0f0;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            color: #555;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--cor-clara);
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            font-family: var(--fonte-titulo);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--cor-titulo);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .main-nav a {
+            font-family: var(--fonte-titulo);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #555;
+            text-decoration: none;
+            padding: 5px 0;
+            transition: color 0.3s, border-bottom 0.3s;
+            text-transform: uppercase;
+        }
+
+        .main-nav a.active {
+            color: var(--cor-titulo);
+            border-bottom: 2px solid var(--cor-titulo);
+        }
+
+        .main-nav a:hover {
+            color: var(--cor-ouro);
+        }
+
+        .header-icons a {
+            color: var(--cor-titulo);
+            font-size: 1.2rem;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-titulo);
+            font-size: 2.5rem;
+            margin: 70px auto 0 auto;
+            font-weight: 800;
+            letter-spacing: 2px;
+            max-width: 800px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: var(--fonte-corpo);
+            color: #777;
+            font-size: 1.1rem;
+            font-weight: 400;
+            font-style: normal;
+            margin-top: 15px;
+            margin-bottom: 50px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-primaria);
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid rgba(255, 195, 0, 0.5);
+            display: inline-block;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto 80px auto;
+        }
+
+        /* 🌟 Estilo dos Cards de Produto */
+        .card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: var(--cor-clara);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-body {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .card-title {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-titulo);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .card-text {
+            font-family: var(--fonte-corpo);
+            color: #777;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            min-height: 40px;
+        }
+
+        .preco-destaque {
+            font-size: 1.8rem;
+            color: var(--cor-destaque);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .btn-detalhes {
+            background-color: var(--cor-destaque);
+            border: 1px solid var(--cor-destaque);
+            color: white;
+            font-weight: 500;
+            border-radius: 4px;
+            padding: 8px 0;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 5px rgba(26, 83, 92, 0.3);
+        }
+
+        .btn-detalhes:hover {
+            background-color: var(--cor-primaria);
+            border-color: var(--cor-primaria);
+            color: var(--cor-ouro);
+            transform: none;
+            box-shadow: 0 4px 8px rgba(10, 54, 66, 0.5);
+        }
+
+        /* Estilos dos Botões de Filtro */
+        .filtro-btn-custom {
+            font-family: var(--fonte-corpo);
+            background-color: var(--cor-clara);
+            border: 1px solid #ccc;
+            color: #555;
+            font-weight: 400;
+            margin: 0 5px 25px 5px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            box-shadow: none;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            text-transform: none;
+        }
+
+        .filtro-btn-custom:hover,
+        .filtro-btn-custom.active {
+            background-color: var(--cor-destaque);
+            border-color: var(--cor-destaque);
+            color: var(--cor-clara);
+            box-shadow: 0 2px 5px rgba(26, 83, 92, 0.4);
+            transform: none;
+        }
+
+        /* Pet Destaque - Banner */
+        .destaque-pet {
+            background-color: #e8e8e8;
+            color: #333;
+            padding: 10px 0;
+            margin-bottom: 40px;
+            font-family: var(--fonte-corpo);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+        }
+
+        .destaque-pet span {
+            color: var(--cor-destaque);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* Por que Escolher-nos */
+        .qualities {
+            background-color: #f7f7f7;
+            padding: 40px 0;
+            margin-bottom: 60px;
+        }
+
+        .quality-item i {
+            color: var(--cor-destaque);
+            font-size: 2.5rem;
+        }
+
+        .quality-item h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .quality-item p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background-color: #f5f0e9;
+            padding: 40px 0;
+            margin-bottom: 60px;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .newsletter h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .newsletter .btn-subscribe {
+            background-color: var(--cor-destaque);
+            border: none;
+            color: var(--cor-clara);
+            font-weight: 600;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .newsletter .btn-subscribe:hover {
+            background-color: var(--cor-primaria);
+        }
+
+
+        /* Rodapé */
+        footer {
+            background-color: var(--cor-titulo);
+            color: #dcdcdc;
+            padding: 20px;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* =================================== */
+        /* ANIMAÇÃO AO SCROLL (Intersection Observer) */
+        /* =================================== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Atraso em cascata para os cards */
+        .animate-on-scroll.card:nth-child(4n + 1) {
+            transition-delay: 0s;
+        }
+
+        .animate-on-scroll.card:nth-child(4n + 2) {
+            transition-delay: 0.1s;
+        }
+
+        .animate-on-scroll.card:nth-child(4n + 3) {
+            transition-delay: 0.2s;
+        }
+
+        .animate-on-scroll.card:nth-child(4n + 4) {
+            transition-delay: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col">
+                    🚚 Frete grátis Sul e Sudeste a partir de R$299 | 💳 3X sem juros no cartão | 💸 5% de desconto no Pix
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-main">
+        <a href="index.html" class="logo">BULTZ PETS</a>
+        <nav class="main-nav">
+            <a href="index.html" class="active">INÍCIO</a>
+            <a href="racas.html">RAÇAS</a>
+            <a href="lojas.html">PRODUTOS</a>
+            <a href="sobre.html">SOBRE NÓS</a>
+            <a href="fale conosco.html">FALE CONOSCO</a>
+        </nav>
+        <div class="header-icons">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i> (0)</a>
+        </div>
+    </div>
+    <header>
+        <h1>Mais fofos. Mais divertidos. Mais vocês.</h1>
+        <h2>Produtos feitos pra deixar sua rotina mais leve e seu pet mais feliz.</h2>
+    </header>
+
+    <div class="destaque-pet">
+        ✨ OFERTA EXCLUSIVA: <span>Frete Grátis</span> para todo o Sudeste!
+    </div>
+    <div class="container">
+        <h3 class="section-title animate-on-scroll">✨ Curadoria da Semana ✨</h3>
+        <div class="row mb-5 animate-on-scroll">
+            <div class="col-12 text-center">
+                <button class="btn filtro-btn-custom active"><i class="fas fa-dog"></i> Cães de Raça</button>
+                <button class="btn filtro-btn-custom"><i class="fas fa-cat"></i> Acessórios Exclusivos</button>
+                <button class="btn filtro-btn-custom"><i class="fas fa-syringe"></i> Spa e Saúde</button>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Ração Quatree Gato Life Filhote Salmão E Arroz 10,1kg.jpg" class="card-img-top"
+                        alt="Ração Premium para Cães">
+                    <div class="card-body">
+                        <h5 class="card-title">Ração de Salmão Defumado 10kg</h5>
+                        <p class="card-text">Fórmula hipoalergênica e nutritiva, ideal para cães de paladar exigente.
+                        </p>
+                        <p class="preco-destaque">R$ 189,90</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Luxury Cat Scratching Towers - Cat Trees.jpg" class="card-img-top"
+                        alt="Arranhador Torre para Gatos">
+                    <div class="card-body">
+                        <h5 class="card-title">Arranhador Torre Royal em Pelúcia</h5>
+                        <p class="card-text">Design de alta-costura. Castelo de atividades com plataformas de sisal.
+                        </p>
+                        <p class="preco-destaque">R$ 350,00</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Shampoo Pet Cães Filhotes Neutro Suave 500ml Sanol Dog.jpg" class="card-img-top"
+                        alt="Shampoo hipoalergênico">
+                    <div class="card-body">
+                        <h5 class="card-title">Shampoo Boutique de Camomila</h5>
+                        <p class="card-text">Suavidade e brilho para peles sensíveis. Aroma luxuoso e duradouro.</p>
+                        <p class="preco-destaque">R$ 45,90</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Coleira, Guia + Peitoral para Cães _ Pet Ajustável, Confortável e Resistente de Alta Qualidade.jpg"
+                        class="card-img-top" alt="Coleira e Guia Reforçada">
+                    <div class="card-body">
+                        <h5 class="card-title">Peitoral Haute Couture em Couro</h5>
+                        <p class="card-text">Coleção exclusiva com fecho de segurança em Ouro Envelhecido. Tam G.</p>
+                        <p class="preco-destaque">R$ 99,99</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Brinquedo Interativo Pet Dispenser Porta Petisco Ração Robozinho.jpg"
+                        class="card-img-top" alt="Brinquedo Interativo">
+                    <div class="card-body">
+                        <h5 class="card-title">IQ Toy Genius Dispenser</h5>
+                        <p class="card-text">Estimula o intelecto e diminui a ansiedade. Material de alta resistência.</p>
+                        <p class="preco-destaque">R$ 55,00</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Cama Pet Cachorros Grande Suspensa Alumínio Tamanho XL Cor Rosa Mec Dreams Ortopédica Higiênica Resistente Confortável Mec G Pet.jpg"
+                        class="card-img-top" alt="Caminha Super Confortável">
+                    <div class="card-body">
+                        <h5 class="card-title">Caminha Ortopédica Supreme XL</h5>
+                        <p class="card-text">Design ergonômico e luxuoso. Máximo conforto e apoio para articulações.</p>
+                        <p class="preco-destaque">R$ 299,00</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Shampoo Kelldrin Matt 6 Em 1 Anti Pulgas E Carrapatos 500ml.jpg"
+                        class="card-img-top" alt="Tratamento Antipulgas">
+                    <div class="card-body">
+                        <h5 class="card-title">Tratamento Antipulgas Royal - 3 Meses</h5>
+                        <p class="card-text">Proteção total com fórmula premium de ação rápida e duradoura.</p>
+                        <p class="preco-destaque">R$ 159,90</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Areia Sanitária Para Gatos Biocat Original 4Kg.jpg" class="card-img-top"
+                        alt="Areia Higiênica para Gatos">
+                    <div class="card-body">
+                        <h5 class="card-title">Areia Sanitária Ultra Premium</h5>
+                        <p class="card-text">Máxima absorção, sem poeira e com neutralização de odores por 7 dias.</p>
+                        <p class="preco-destaque">R$ 29,90</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Petisco Cachorro Frango Desidratado Natural 08un Premium.jpg"
+                        class="card-img-top" alt="Petisco Natural">
+                    <div class="card-body">
+                        <h5 class="card-title">Petiscos Gourmet de Frango</h5>
+                        <p class="card-text">100% naturais. Ideal para adestramento e mimos saudáveis. Livre de grãos.</p>
+                        <p class="preco-destaque">R$ 32,50</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Bebedouro Fonte Gatos Cachorros Cães Little 1 Litro Cor Rosa.jpg"
+                        class="card-img-top" alt="Fonte de Água Automática">
+                    <div class="card-body">
+                        <h5 class="card-title">Fonte Elegance de Cerâmica</h5>
+                        <p class="card-text">Água sempre fresca e filtrada. Design moderno que decora o ambiente.</p>
+                        <p class="preco-destaque">R$ 139,90</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Kit Higiene Banho Pet Clean Completo Para Filhote Cachorro E Gato Cuidados com o Pelo e Saude Bucal _ Shopee Brasil.jpg"
+                        class="card-img-top" alt="Kit de Higiene Completo">
+                    <div class="card-body">
+                        <h5 class="card-title">Kit Essentials Pelo Longo</h5>
+                        <p class="card-text">O ritual completo de cuidados: shampoo, condicionador, e escova profissional.</p>
+                        <p class="preco-destaque">R$ 89,90</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col animate-on-scroll">
+                <div class="card h-100">
+                    <img src="/imagens/Caixa De Transporte Cachorros Pet Extra Grande Thor Número 5 Cor Vermelho.jpg"
+                        class="card-img-top" alt="Caixa de Transporte">
+                    <div class="card-body">
+                        <h5 class="card-title">Caixa de Transporte First Class</h5>
+                        <p class="card-text">Viagens com o máximo de conforto e segurança. Padrão internacional IATA.</p>
+                        <p class="preco-destaque">R$ 175,00</p>
+                        <a href="#" class="btn btn-primary w-100 btn-detalhes">Adquirir Agora <i
+                                class="fas fa-tag"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="qualities">
+        <div class="container">
+            <h3 class="section-title animate-on-scroll">🏆 Por que Escolher a Bultz Pets?</h3>
+            <div class="row mt-5">
+                <div class="col-md-4 quality-item animate-on-scroll">
+                    <i class="fas fa-crown"></i>
+                    <h4>Padrão de Qualidade Bultz</h4>
+                    <p>Apenas produtos de alta durabilidade e segurança, selecionados com a excelência que seu pet
+                        merece.</p>
+                </div>
+                <div class="col-md-4 quality-item animate-on-scroll" style="transition-delay: 0.1s;">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Curadoria Especializada</h4>
+                    <p>Cada item é testado e aprovado por veterinários e especialistas em bem-estar animal.</p>
+                </div>
+                <div class="col-md-4 quality-item animate-on-scroll" style="transition-delay: 0.2s;">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h4>Entrega Expressa e Segura</h4>
+                    <p>Seu pedido com a agilidade e o cuidado que um item de luxo exige, em todo o Brasil.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newsletter">
+        <div class="container animate-on-scroll">
+            <h3>Assine nossa Newsletter Exclusiva e Ganhe 10% OFF!</h3>
+            <p>Receba em primeira mão nossas novidades, eventos e cupons especiais.</p>
+            <form class="row justify-content-center">
+                <div class="col-md-5">
+                    <input type="email" class="form-control" placeholder="Seu melhor e-mail" required>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-subscribe w-100">CADASTRE-SE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 Bultz Pets - Qualidade e carinho em cada produto.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script>
+        /* =================================== */
+        /* JAVASCRIPT: INTERSECTION OBSERVER */
+        /* =================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seleciona todos os elementos que devem ter a animação
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+
+            const observerOptions = {
+                root: null, // O viewport (janela de visualização) é o elemento raiz
+                rootMargin: '0px',
+                // O threshold de 0.1 significa que a função de callback será executada quando 10%
+                // do elemento estiver visível no viewport.
+                threshold: 0.1
+            };
+
+            // Cria uma nova instância do Intersection Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Se o elemento estiver visível (ou seja, cruzou o threshold)
+                        entry.target.classList.add('animate-in');
+                        // Para a observação do elemento para que a animação ocorra apenas uma vez
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Inicia a observação de cada elemento selecionado
+            elementsToAnimate.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+
+</html>

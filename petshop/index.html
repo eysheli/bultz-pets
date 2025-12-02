@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bultz Pet Shop | Início</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+
+    <style>
+        /* 🎨 Paleta de Cores & Fontes (ESTILO BUGZ PETS: Moderno e Amigável) */
+        :root {
+            --cor-primaria: #1D484F;
+            /* Teal Escuro (Main Dark) - Para rodapé, header e textos fortes */
+            --cor-acento: #F29F05;
+            /* Laranja/Marigold (Accent) - Para destaque e hover */
+            --cor-destaque: #3AA9A0;
+            /* Verde Água/Cyan (Action Color) - Para botões e ícones */
+            --cor-titulo: #333333;
+            /* Cor do texto padrão */
+            --cor-fundo: #FFFFFF;
+            /* Fundo branco limpo */
+            /* FONTES */
+            --fonte-titulo: 'Montserrat', sans-serif;
+            --fonte-corpo: 'Open Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--fonte-corpo);
+            background-color: var(--cor-fundo);
+            margin: 0;
+            padding: 0;
+            color: var(--cor-titulo);
+            overflow-x: hidden;
+        }
+
+        /* ----------------------------------------------------- */
+        /* 🌟 CLASSES DE ANIMAÇÃO (MANTIDAS) 🌟 */
+        /* ----------------------------------------------------- */
+        .animar {
+            opacity: 0;
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateY(20px);
+        }
+
+        .animar.visivel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animar-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .animar-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .animar-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .animar-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .animar-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        .animar-delay-6 {
+            transition-delay: 0.6s;
+        }
+
+        .animar-rapido {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .animar-rapido.visivel {
+            opacity: 1;
+        }
+
+
+        /* 🔹 Menu de Navegação (Revisão para Navbar Bootstrap) */
+        .navbar-custom {
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: var(--cor-fundo);
+            /* Fundo branco */
+        }
+
+        .nav-link-custom {
+            color: var(--cor-titulo) !important;
+            /* Texto escuro */
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-family: var(--fonte-titulo);
+            margin: 0 5px;
+            /* Espaçamento sutil */
+        }
+
+        .nav-link-custom:hover,
+        .nav-link-custom.active {
+            color: var(--cor-acento) !important;
+            /* Destaque em Laranja no hover */
+        }
+
+        .logo-texto {
+            font-family: var(--fonte-titulo);
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--cor-primaria);
+            display: block;
+            text-decoration: none;
+            /* Garante que o logo não tem sublinhado */
+        }
+
+        /* 🔹 Títulos Globais */
+        .titulo-principal {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-primaria);
+            font-size: 3.5rem;
+            /* Menor e mais direto */
+            margin-top: 40px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: none;
+            /* Sem uppercase para modernidade */
+            text-shadow: none;
+        }
+
+        .subtitulo-principal {
+            font-family: var(--fonte-corpo);
+            color: #666;
+            font-size: 1.5rem;
+            font-style: normal;
+            font-weight: 400;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .secao-titulo {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: none;
+        }
+
+        /* 🌟 Carrossel (Banner Principal) */
+        .carousel {
+            max-width: 100%;
+            /* Largura total */
+            margin: 0 auto 60px auto;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            /* Sombra mais leve */
+        }
+
+        .carousel img {
+            height: 500px;
+            /* Mais baixo */
+            object-fit: cover;
+            filter: brightness(0.9);
+            /* Menos escuro */
+            transition: transform 6s ease-in-out;
+        }
+
+        .carousel-caption {
+            bottom: 15%;
+            left: 5%;
+            right: 55%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Fundo claro para o texto */
+            border-left: 5px solid var(--cor-destaque);
+            /* Linha vertical Verde Água */
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .carousel-caption h5 {
+            font-family: var(--fonte-titulo);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cor-primaria);
+            /* Título em Teal Escuro */
+            text-shadow: none;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .carousel-caption p {
+            font-family: var(--fonte-corpo);
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* 🌟 Estilo do Botão Principal (Verde Água com Laranja) */
+        .btn-destaque {
+            background-color: var(--cor-destaque);
+            border: 1px solid var(--cor-destaque);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            /* Botão arredondado e amigável */
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px #3aa9a066;
+            transition: all 0.3s;
+        }
+
+        .btn-destaque:hover {
+            background-color: var(--cor-acento);
+            border-color: var(--cor-acento);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(242, 159, 5, 0.6);
+        }
+
+        /* 🐾 Seção de Categorias/Produtos (Adaptação para estrutura de produto/serviço) */
+        .categorias {
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            /* Centralizado, como no Bugz Pets */
+            flex-wrap: wrap;
+        }
+
+        .categoria-item {
+            text-align: center;
+            text-decoration: none;
+            color: var(--cor-titulo);
+            font-weight: 600;
+            margin: 15px 15px;
+            transition: transform 0.4s, color 0.4s;
+            max-width: 180px;
+            /* Aumentei um pouco para caber a descrição */
+        }
+
+        .categoria-item:hover {
+            transform: translateY(-5px);
+            /* Efeito mais sutil */
+            color: var(--cor-acento);
+        }
+
+        .categoria-item span {
+            font-family: var(--fonte-titulo);
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: block;
+            margin-top: 10px;
+            text-transform: none;
+            letter-spacing: 0;
+            height: 45px;
+            /* Altura fixa para o nome do produto */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .categoria-item img {
+            width: 150px;
+            /* Aumentei o tamanho */
+            height: 150px;
+            /* Aumentei o tamanho */
+            border-radius: 10px;
+            /* Mudança para cantos arredondados (quadrado) */
+            border: 4px solid var(--cor-destaque);
+            /* Borda em Verde Água */
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+        }
+
+        .categoria-item:hover img {
+            border-color: var(--cor-acento);
+            /* Borda Laranja no hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 📞 Seção de Destaque */
+        .secao-cta {
+            background: linear-gradient(90deg, #e4f5f5, #ffffff);
+            /* Gradiente muito suave */
+            padding: 80px 20px;
+            margin-bottom: 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .secao-cta h3 {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-primaria);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .secao-cta p.lead {
+            font-family: var(--fonte-corpo);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Estilos para a nova seção de Diferenciais (Mais limpo) */
+        .diferencial-item {
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #f7f7f7;
+            /* Fundo cinza suave */
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            /* Sombra suave */
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+        .diferencial-item:hover {
+            transform: translateY(-4px);
+            /* Efeito de elevação suave */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .diferencial-item i {
+            color: var(--cor-acento);
+            /* Ícones em Laranja */
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: none;
+        }
+
+        .diferencial-item h4 {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-primaria);
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+            font-size: 1.3rem;
+        }
+
+        .diferencial-item p {
+            font-family: var(--fonte-corpo);
+            font-size: 1rem;
+        }
+
+        .diferencial-item a {
+            font-weight: 600;
+            color: var(--cor-destaque);
+            text-decoration: none;
+            transition: color 0.3s;
+            text-transform: none;
+            font-size: 0.95rem;
+            border-bottom: 1px dotted var(--cor-destaque);
+            /* Linha pontilhada */
+        }
+
+        .diferencial-item a:hover {
+            color: var(--cor-acento);
+            border-bottom-color: var(--cor-acento);
+        }
+
+        /* Novo Estilo para Ofertas */
+        .card-oferta {
+            background-color: var(--cor-destaque);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card-oferta:hover {
+            transform: scale(1.03);
+        }
+
+        .card-oferta h4 {
+            font-family: var(--fonte-titulo);
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--cor-acento);
+            /* Título em Laranja */
+            text-shadow: 1px 1px 0px var(--cor-primaria);
+        }
+
+        .card-oferta .preco-antigo {
+            text-decoration: line-through;
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        .card-oferta .preco-novo {
+            font-family: var(--fonte-titulo);
+            font-weight: 900;
+            font-size: 2.2rem;
+            color: var(--cor-fundo);
+        }
+
+        /* Estilo para Newsletter */
+        .newsletter-footer {
+            background-color: #2e595e;
+            /* Um tom ligeiramente mais claro que o primário */
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .newsletter-footer h5 {
+            color: var(--cor-acento);
+            font-family: var(--fonte-titulo);
+            font-weight: 700;
+        }
+
+        /* 🔹 Rodapé (Mais detalhado e escuro) */
+        footer {
+            background-color: var(--cor-primaria);
+            /* Fundo em Teal Escuro */
+            color: #dcdcdc;
+            padding: 60px 40px;
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--cor-acento);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid text-center py-2" style="font-size: 0.9rem; background-color: #f0f0f0; color: #666;">
+        <p class="mb-0">
+            <i class="fas fa-shipping-fast" style="color: var(--cor-destaque);"></i> Frete grátis Sul e
+            Sudeste à partir de R$299 |
+            <i class="fas fa-tags" style="color: var(--cor-destaque);"></i> 3X sem juros no cartão |
+            <i class="fas fa-hand-holding-usd" style="color: var(--cor-destaque);"></i> 5% de desconto no
+            Pix
+        </p>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand me-auto" href="index.html">
+                <span class="logo-texto">BUGZ PETS</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom active" aria-current="page" href="index.html">INÍCIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="racas.html">RAÇAS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="produtos.html">PRODUTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="sobre.html">SOBRE NÓS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="fale conosco.html">FALE CONOSCO</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <a href="#" class="nav-link-custom me-3" data-bs-toggle="modal" data-bs-target="#searchModal"
+                    title="Pesquisar">
+                    <i class="fas fa-search" style="color: var(--cor-primaria);"></i>
+                </a>
+                <a href="#" class="nav-link-custom" title="Carrinho de Compras">
+                    <i class="fas fa-shopping-cart" style="color: var(--cor-acento);"></i> (0)
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel"
+                        style="font-family: var(--fonte-titulo); color: var(--cor-primaria);">
+                        Pesquisar Produtos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Digite o nome do produto..."
+                                aria-label="Pesquisar">
+                            <button class="btn" type="button"
+                                style="background-color: var(--cor-destaque); color: white;">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="titulo-principal animar-rapido">Mais fofos. Mais divertidos. Mais vocês.</h1>
+    <h2 class="subtitulo-principal animar-rapido">Produtos feitos pra deixar sua rotina mais leve e seu pet mais
+        feliz.</h2>
+    <hr>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                
+                <img src="/imagens/imagem1.jpg" class="d-block w-100" alt="Cachorro em destaque com ração">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>A revolução do comedouro lento</h5>
+                    <p>Reduza a ansiedade e melhore a digestão do seu pet com a nossa Tigela Lua de
+                        silicone de grau alimentício. **Segura, leve e fácil de limpar.**</p>
+                    <a href="lojas.html" class="btn btn-destaque mt-3">COMPRAR AGORA</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                
+                <img src="/imagens/Expositores do petshop _ homify.jpg" class="d-block w-100"
+                    alt="Gato brincando com brinquedo interativo">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>NOVA COLEÇÃO DE BRINQUEDOS DURÁVEIS</h5>
+                    <p>Mantenha seu pet ativo e mentalmente estimulado! Descubra a nova linha que
+                        **previne o estresse e o tédio.**</p>
+                    <a href="lojas.html" class="btn btn-destaque mt-3">VER CATÁLOGO</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                
+
+[Image of pet products with safety certifications]
+
+                <img src="/imagens/cuidado.jpg" class="d-block w-100" alt="Médico veterinário examinando um pet">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>SEGURANÇA E QUALIDADE PARA O SEU PET</h5>
+                    <p>Feitos com materiais atóxicos e duráveis, pensados para a saúde e o bem-estar
+                        do seu amigo. **Compromisso Bugz Pets.**</p>
+                    <a href="#" class="btn btn-destaque mt-3">VER MATERIAIS</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
+    </div>
+
+    <hr>
+
+    <div class="container my-5">
+        <h3 class="secao-titulo animar">Nossa Filosofia: Calma, Leve e Saudável</h3>
+        <p class="text-center text-muted mb-5 lead animar animar-delay-1"
+            style="font-family: var(--fonte-corpo); font-size: 1.2rem; color: #666!important;">Conheça os diferenciais
+            dos nossos produtos, pensados para a vida real e o conforto do seu pet.</p>
+
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="diferencial-item animar animar-delay-2">
+                    <i class="fas fa-heart"></i>
+                    <h4>Reduz a Ansiedade</h4>
+                    <p class="text-muted">Nossos comedouros lentos e brinquedos interativos promovem
+                        um momento de alimentação mais calmo e prazeroso.</p>
+                    <a href="#" class="mt-2">Ver Linha Calma <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="diferencial-item animar animar-delay-3">
+                    <i class="fas fa-recycle"></i>
+                    <h4>Materiais Seguros</h4>
+                    <p class="text-muted">Apenas silicone de grau alimentício e materiais atóxicos.
+                        Garantia de segurança, leveza e facilidade na limpeza.</p>
+                    <a href="lojas.html" class="mt-2">Saiba Mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="diferencial-item animar animar-delay-4">
+                    <i class="fas fa-tint"></i>
+                    <h4>Fácil de Limpar</h4>
+                    <p class="text-muted">Nossos produtos não acumulam odores e podem ir do
+                        micro-ondas ao freezer, simplificando sua rotina de cuidado.</p>
+                    <a href="#" class="mt-2">Dicas de Limpeza <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="diferencial-item animar animar-delay-5">
+                    <i class="fas fa-truck"></i>
+                    <h4>Entrega Rápida</h4>
+                    <p class="text-muted">Compromisso de entrega em todo o Brasil com rastreamento e
+                        frete grátis em compras acima do valor estipulado.</p>
+                    <a href="#" class="mt-2">Ver Política de Frete <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container my-5">
+        <h3 class="secao-titulo animar">🔥 Ofertas da Semana Bultz Pets 🔥</h3>
+        <p class="text-center text-muted mb-5 lead animar animar-delay-1"
+            style="font-family: var(--fonte-corpo); font-size: 1.2rem; color: #666!important;">Aproveite os descontos
+            limitados em produtos selecionados para o seu pet!</p>
+
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div class="card-oferta animar animar-delay-2">
+                    <h4>Comedouro Lento Tigela Lua</h4>
+                    <p class="preco-antigo">De R$89,90</p>
+                    <p class="preco-novo">Por R$75,00</p>
+                    <a href="lojas.html#tigela-lua" class="btn btn-sm btn-light mt-3"
+                        style="color: var(--cor-destaque); font-weight: 700;">EU QUERO!</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card-oferta animar animar-delay-3" style="background-color: var(--cor-acento);">
+                    <h4>Kit Brinquedos Interativos (4 Peças)</h4>
+                    <p class="preco-antigo">De R$149,90</p>
+                    <p class="preco-novo">Por R$99,90</p>
+                    <a href="lojas.html#brinquedo" class="btn btn-sm btn-light mt-3"
+                        style="color: var(--cor-acento); font-weight: 700;">COMPRAR AGORA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 class="secao-titulo animar">Favoritos dos Pets</h3>
+    <div class="categorias">
+        <a href="lojas.html#tigela-lua" class="categoria-item animar animar-delay-1">
+            
+            <img src="/imagens/tigela lua.jpg"
+                alt="Tigela Lua - Comedouro Lento">
+            <span>Tigela Lua - Comedouro Lento</span>
+            <p style="font-size: 0.9rem; font-weight: 700; color: var(--cor-destaque);">R$89,90</p>
+        </a>
+        <a href="lojas.html#tapetinho" class="categoria-item animar animar-delay-2">
+            
+            <img src="/imagens/tepete silone.webp" alt="Tapetinho de Silicone">
+            <span>Tapetinho de Silicone Antiderrapante</span>
+            <p style="font-size: 0.9rem; font-weight: 700; color: var(--cor-destaque);">R$69,90</p>
+        </a>
+        <a href="lojas.html#tigela-sol" class="categoria-item animar animar-delay-3">
+            
+            <img src="/imagens/Tijela-Lua-Laranja_so-1-420x525.png" alt="Tigela Sol - Design Duplo">
+            <span>Tigela Sol - Comedouro Rápido</span>
+            <p style="font-size: 0.9rem; font-weight: 700; color: var(--cor-destaque);">R$84,90</p>
+        </a>
+        <a href="lojas.html#brinquedo" class="categoria-item animar animar-delay-4">
+            
+            <img src="/imagens/Brinquedo Interativo Pet Dispenser Porta Petisco Ração Robozinho.jpg"
+                alt="Brinquedo Interativo Resistente">
+            <span>Brinquedo Interativo Resistente</span>
+            <p style="font-size: 0.9rem; font-weight: 700; color: var(--cor-destaque);">R$49,90</p>
+        </a>
+    </div>
+
+    <div class="secao-cta animar">
+        <h3>Quer Saber Mais sobre Nossos Produtos e Missão?</h3>
+        <p class="lead">Entenda por que a Bugz Pets é a escolha certa para quem busca inovação, qualidade e
+            carinho para o seu melhor amigo.</p>
+        <a href="lojas.html" class="btn btn-destaque mt-3">SAIBA MAIS SOBRE NÓS</a>
+    </div>
+
+    <footer class="animar-rapido">
+        <div class="container">
+            <div class="row text-start">
+                <div class="col-md-4 mb-4">
+                    <h5
+                        style="color: var(--cor-acento); font-family: var(--fonte-titulo); font-weight: 700;">BUGZ PETS
+                    </h5>
+                    <p style="font-size: 0.9rem;">Criamos produtos diferentes e de qualidade para
+                        transformar momentos com seu pet em experiências incríveis, mais leves e saudáveis.
+                        <br>
+                        <i class="fas fa-map-marker-alt" style="color: var(--cor-destaque);"></i> Curitiba, Paraná.
+                    </p>
+                    <p style="font-size: 0.8rem; margin-top: 20px; font-weight: 600; color: #a4a4a4;">
+                        FORMAS DE PAGAMENTO ACEITAS:
+                    </p>
+                    
+
+[Image of accepted payment methods icons]
+
+                    <i class="fab fa-cc-visa fa-2x me-2" style="color: white;"></i>
+                    <i class="fab fa-cc-mastercard fa-2x me-2" style="color: white;"></i>
+                    <i class="fas fa-money-check-alt fa-2x me-2" style="color: white;"></i>
+                    <i class="fas fa-qrcode fa-2x" style="color: white;"></i>
+
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5
+                        style="color: var(--cor-acento); font-family: var(--fonte-titulo); font-weight: 700;">
+                        ATENDIMENTO</h5>
+                    <ul class="list-unstyled" style="font-size: 0.9rem;">
+                        <li><a href="lojas.html">Loja Online</a></li>
+                        <li><a href="#">Rastrear Pedido</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-5 mb-4">
+                    <div class="newsletter-footer">
+                        <h5>ASSINE NOSSA NEWSLETTER 💌</h5>
+                        <p style="font-size: 0.9rem; color: #fff;">Receba 10% de desconto na primeira compra e
+                            fique por dentro das novidades!</p>
+                        <form>
+                            <div class="input-group mb-3">
+                                <input type="email" class="form-control" placeholder="Seu melhor e-mail"
+                                    aria-label="Seu melhor e-mail">
+                                <button class="btn" type="submit"
+                                    style="background-color: var(--cor-acento); color: var(--cor-primaria); font-weight: 700;">
+                                    CADASTRAR</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h5
+                        style="color: var(--cor-acento); font-family: var(--fonte-titulo); font-weight: 700; margin-top: 20px;">
+                        CONTATO
+                    </h5>
+                    <p style="font-size: 0.9rem;">
+                        <i class="fas fa-phone-alt" style="color: var(--cor-destaque);"></i>
+                        (41) 9 9122-7655 <br>
+                        <i class="fas fa-envelope" style="color: var(--cor-destaque);"></i>
+                        contato@bugzpets.com.br
+                    </p>
+                    <p style="font-size: 0.9rem;">
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="text-center pt-4 border-top border-secondary">
+                <p class="mb-0" style="font-size: 0.9rem;">Copyright ©2025 Bultz Pets – Loja online de
+                    produtos pet.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. Configurar o Intersection Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visivel');
+                        observer.unobserve(entry.target); // Para parar de observar depois de animar uma vez
+                    }
+                });
+            }, {
+                root: null, // Observa em relação à viewport
+                rootMargin: '0px 0px -100px 0px', // O elemento aparece quando 100px dele estiver visível
+                threshold: 0.1 // 10% do elemento visível
+            });
+
+            // 2. Aplicar a animação a todos os elementos com a classe 'animar'
+            document.querySelectorAll('.animar').forEach(element => {
+                observer.observe(element);
+            });
+
+            // 3. Animação rápida para o título principal e rodapé
+            document.querySelectorAll('.animar-rapido').forEach(element => {
+                // Adiciona a classe visivel imediatamente após o carregamento
+                setTimeout(() => {
+                    element.classList.add('visivel');
+                }, 100);
+            });
+        });
+    </script>
+
+    <script src="contato.js"></script>
+</body>
+
+</html>

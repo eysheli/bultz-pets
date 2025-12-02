@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bultz Pets | Guia de Raças</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* 🎨 PALETA DE CORES & FONTES - BASEADA NA IMAGEM (Branco/Preto/Verde) */
+        :root {
+            /* Cor Primária AGORA é Branco/Fundo Principal do Header */
+            --cor-primaria: #ffffff;
+            /* Cor do Texto de Navegação/Título Principal */
+            --cor-titulo: #333333;
+            /* Cor de Destaque/CTA (Verde da Promoção) */
+            --cor-destaque: #15565f;
+            /* Cinza da Barra de Promoção/Linhas */
+            --cor-promocao: #f0f0f0;
+            /* Cor para Links de Ação (Carrinho, Lupa, Ações da Tabela - AZUL) */
+            --cor-acao: #246168;
+            --cor-alerta: #ffc107;
+            --cor-secundaria: #6c757d;
+            --cor-fundo: #f8f9fa;
+            /* Cor da Sombra Suave (Para manter o estilo de card moderno) */
+            --cor-sombra-suave: rgba(0, 0, 0, 0.1);
+
+            /* FONTES (Montserrat para tudo) */
+            --fonte-titulo: 'Montserrat', sans-serif;
+            --fonte-corpo: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--fonte-corpo);
+            background-color: var(--cor-fundo);
+            margin: 0;
+            padding: 0;
+            color: var(--cor-titulo);
+        }
+
+        /* ------------------------------------- */
+        /* HEADER IDÊNTICO À IMAGEM FORNECIDA */
+        /* ------------------------------------- */
+
+        .top-promo-bar {
+            background-color: var(--cor-promocao);
+            color: #555;
+            font-size: 0.85rem;
+            padding: 8px 0;
+            font-weight: 500;
+            font-family: var(--fonte-corpo);
+            text-align: center;
+        }
+
+        .main-header {
+            background-color: var(--cor-primaria);
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            /* Sombra suave para o header */
+            box-shadow: 0 2px 5px var(--cor-sombra-suave);
+        }
+
+        .brand-name {
+            font-family: var(--fonte-titulo);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cor-titulo);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        /* Cor do Texto do Menu */
+        .navbar-nav .nav-link {
+            font-family: var(--fonte-corpo);
+            color: var(--cor-titulo) !important;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0 10px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        /* Efeito Hover do Menu (Cor de Destaque Verde) */
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--cor-destaque) !important;
+        }
+
+        /* Ícones de Ação (Lupa e Carrinho) */
+        .action-icon {
+            color: var(--cor-titulo);
+            font-size: 1.2rem;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .action-icon:hover {
+            color: var(--cor-acao);
+        }
+
+        /* ------------------------------------- */
+        /* FIM DO HEADER VISUALMENTE IDÊNTICO */
+        /* ------------------------------------- */
+
+        /* 🔹 Títulos Globais da Página CRUD (Raças) */
+        .titulo-principal {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-titulo);
+            font-size: 2.8rem;
+            margin-top: 50px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: none;
+        }
+
+        .subtitulo-principal {
+            font-family: var(--fonte-corpo);
+            color: var(--cor-acao);
+            font-size: 1.2rem;
+            font-style: normal;
+            font-weight: 400;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-family: var(--fonte-titulo);
+            color: var(--cor-destaque);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* 🖼️ Estilo da Tabela CRUD - CORRIGIDO */
+        .table-crud {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px var(--cor-sombra-suave);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .table-crud thead th {
+            background-color: var(--cor-acao);
+            /* Azul para o cabeçalho da tabela */
+            color: white;
+            font-weight: 600;
+            font-family: var(--fonte-corpo);
+            font-size: 0.95rem;
+            padding: 15px 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .table-crud tbody td {
+            font-family: var(--fonte-corpo);
+            font-size: 0.9rem;
+            vertical-align: middle;
+            color: #555;
+        }
+
+        /* Zebra stripes - Reintroduzindo as listras */
+        .table-crud tbody tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+
+        .table-crud img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--cor-alerta);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ⚙️ Botão Principal (Adicionar) */
+        .btn-criar {
+            background-color: var(--cor-destaque);
+            border: 1px solid var(--cor-destaque);
+            color: white;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-criar:hover {
+            background-color: var(--cor-acao);
+            /* Transição para o azul no hover */
+            border-color: var(--cor-acao);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* 📝 Botões de Ação na Tabela - CORRIGIDO */
+        .btn-action {
+            text-decoration: none;
+            margin: 0 6px;
+            font-size: 1.1rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.15);
+        }
+
+        .btn-edit {
+            color: var(--cor-acao);
+            /* Azul */
+        }
+
+        .btn-delete {
+            color: var(--cor-destaque);
+            /* Verde */
+        }
+
+        /* Estilo da Busca */
+        #buscaRaca.form-control {
+            border-right: none;
+            box-shadow: none !important;
+        }
+
+        .input-group-text {
+            border-left: none;
+            background-color: white !important;
+            border-color: #ccc !important;
+        }
+
+        /* 📦 Estilos dos Modais */
+        .modal-content {
+            font-family: var(--fonte-corpo);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px var(--cor-sombra-suave);
+        }
+
+        .modal-header {
+            background-color: var(--cor-acao);
+            /* Azul para o cabeçalho do modal */
+            color: white;
+            border-bottom: 2px solid var(--cor-alerta);
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1) grayscale(1) brightness(2);
+        }
+
+        .modal-title {
+            font-family: var(--fonte-titulo);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Botão de Buscar Foto no Modal */
+        #btnBuscarFoto {
+            background-color: var(--cor-alerta) !important;
+            border-color: var(--cor-alerta) !important;
+            color: var(--cor-acao) !important;
+            font-weight: 700;
+        }
+
+        #btnBuscarFoto:hover {
+            background-color: #ffda6a !important;
+            border-color: #ffda6a !important;
+            color: var(--cor-titulo) !important;
+        }
+
+        /* Botão no Modal de Confirmação */
+        #confirmarExclusaoBtn {
+            background-color: var(--cor-destaque);
+            border: 1px solid var(--cor-destaque) !important;
+        }
+
+        #confirmarExclusaoBtn:hover {
+            background-color: #29585c !important;
+            border: 1px solid #2e5a62 !important;
+            color: white !important;
+        }
+
+        /* 🔹 Rodapé */
+        footer {
+            background-color: var(--cor-titulo);
+            color: #dcdcdc;
+            padding: 30px;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            margin-top: 60px;
+            font-family: var(--fonte-corpo);
+            text-align: center;
+        }
+
+        /* 💨 ANIMAÇÕES E TRANSIÇÕES (Para o efeito de movimento) */
+
+        /* Define o estado inicial para o container da tabela (deslize e invisível) */
+        .table-responsive.fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Estado final: totalmente visível na posição correta */
+        .table-responsive.fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Transição para as linhas da tabela (efeito cascata) */
+        .table-crud tbody tr {
+            /* O JS manipula o opacity e transform diretamente no estilo inline
+                para o efeito cascata, mas esta transição garante a suavidade */
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .table-crud tbody tr.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-promo-bar d-none d-md-block">
+        <div class="container text-center">
+            <span class="me-4"><i class="fas fa-truck text-success me-1"></i> Frete grátis Sul e Sudeste a partir de R$299</span> |
+            <span class="me-4"><i class="fas fa-credit-card text-primary me-1"></i> 3X sem juros no cartão</span> |
+            <span><i class="fas fa-money-bill-wave text-success me-1"></i> 5% de desconto no Pix</span>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="brand-name" href="index.html">BUlTZ PETS</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="index.html">INÍCIO</a></li>
+                        <li><a class="nav-link active" href="racas.html">RAÇAS</a></li>
+                        <li><a class="nav-link" href="produtos.html">PRODUTOS</a></li>
+                        <li><a class="nav-link" href="sobre.html">SOBRE NÓS</a></li>
+                        <li><a class="nav-link" href="fale conosco.html">FALE CONOSCO</a></li>
+                    </ul>
+
+                    <div class="d-flex ms-lg-4">
+                        <a href="#" class="action-icon"><i class="fas fa-search"></i></a>
+                        <a href="#" class="action-icon"><i class="fas fa-shopping-cart"></i> (0)</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-container">
+        <h1 class="titulo-principal">
+            Guia de Raças Bultz Pets
+        </h1>
+        <h2 class="subtitulo-principal">
+            Conhecimento e Cuidado para o Pet da sua Família.
+        </h2>
+
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <div class="input-group shadow-sm rounded">
+                    <input type="text" class="form-control" id="buscaRaca" placeholder="Buscar por Nome, Espécie ou ID..."
+                        aria-label="Buscar Raça">
+                    <span class="input-group-text">
+                        <i class="fas fa-search" style="color: var(--cor-acao);"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <button type="button" class="btn btn-criar" data-bs-toggle="modal" data-bs-target="#racasModal">
+                    <i class="fas fa-plus-circle me-2"></i> Adicionar Nova Raça
+                </button>
+            </div>
+        </div>
+
+        <h3 class="section-title text-center">Tabela de Gerenciamento</h3>
+
+        <div class="table-responsive fade-in active">
+            <table class="table table-hover table-crud shadow-lg">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>ID</th>
+                        <th>Nome da Raça</th>
+                        <th>Espécie</th>
+                        <th>Temperamento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="racas-table-body">
+                    </tbody>
+            </table>
+        </div>
+        <p id="no-results-message" class="text-center lead mt-5"
+            style="display: none; color: var(--cor-destaque); font-style: italic;">
+            <i class="fas fa-paw me-2"></i> Nenhuma raça encontrada com os critérios de busca.
+        </p>
+    </div>
+
+    <div class="modal fade" id="racasModal" tabindex="-1" aria-labelledby="racasModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="racasModalLabel">Cadastrar Nova Raça</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-raca">
+                        <input type="hidden" id="raca-id" value="">
+
+                        <div class="mb-3">
+                            <label for="nomeRaca" class="form-label">Nome da Raça:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nomeRaca" required>
+                                <button class="btn btn-outline-secondary" type="button" id="btnBuscarFoto"
+                                    title="Buscar Imagem Automaticamente (Apenas para Cães)">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">Clique na câmera para buscar a imagem automaticamente (Funciona
+                                melhor com raças de cães e gatos).</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="urlFoto" class="form-label">URL da Foto (Avatar Circular):</label>
+                            <input type="url" class="form-control" id="urlFoto"
+                                placeholder="Preenchimento automático após buscar..." readonly>
+                            <small class="text-muted">A URL será preenchida automaticamente. Você pode copiar uma URL
+                                manualmente se a busca falhar.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="especie" class="form-label">Espécie:</label>
+                            <select class="form-select" id="especie" required>
+                                <option value="Cão">Cão</option>
+                                <option value="Gato">Gato</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="temperamento" class="form-label">Temperamento (Curto):</label>
+                            <input type="text" class="form-control" id="temperamento"
+                                placeholder="Ex: Dócil, Inteligente, Brincalhão">
+                        </div>
+                        <div class="mb-3">
+                            <label for="detalhes" class="form-label">Detalhes (Descrição Completa):</label>
+                            <textarea class="form-control" id="detalhes" rows="3"
+                                placeholder="Descrição completa da raça, cuidados especiais, etc."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-criar w-100 mt-3" id="btn-salvar-raca">
+                            <i class="fas fa-save me-2"></i> Salvar Raça
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header text-white border-0">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel"
+                        style="font-family: var(--fonte-titulo); font-weight: 700;">
+                        <i class="fas fa-exclamation-triangle me-2"></i> Confirmar Exclusão
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="lead" style="font-family: var(--fonte-corpo); font-weight: 600; color: var(--cor-titulo);">
+                        Tem certeza que deseja excluir esta raça?
+                    </p>
+                    <p class="text-danger" style="font-family: var(--fonte-corpo); font-size: 0.9rem;">
+                        Esta ação não pode ser desfeita.
+                    </p>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        style="font-family: var(--fonte-corpo); background-color: var(--cor-secundaria); border: none;">
+                        <i class="fas fa-times me-1"></i> Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger" id="confirmarExclusaoBtn" data-raca-id="">
+                        <i class="fas fa-trash-alt me-1"></i> Excluir
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback-alert-container"></div>
+
+    <footer>
+        © 2025 Bugz Pets - Gerenciamento Administrativo
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="racas.js"></script>
+</body>
+
+</html>
